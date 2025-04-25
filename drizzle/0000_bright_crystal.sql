@@ -21,6 +21,7 @@ CREATE TABLE `link_style` (
 CREATE TABLE `page` (
 	`id` serial NOT NULL,
 	`title` varchar(255) NOT NULL,
+	`hostname` varchar(255) NOT NULL,
 	`header` text NOT NULL,
 	`footer` text NOT NULL,
 	`customization` json NOT NULL,

@@ -1,3 +1,9 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
+
+@plugin 'daisyui' {
+    themes: 'all'
+}
+
+@import 'boxicons';

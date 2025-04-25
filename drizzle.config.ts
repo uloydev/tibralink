@@ -10,6 +10,5 @@ export default defineConfig({
 	dialect: 'mysql',
 	migrations: {
 		table: 'migrations',
-		schema: 'public',
 	},
 });

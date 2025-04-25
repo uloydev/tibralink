@@ -19,6 +19,7 @@ export const session = mysqlTable('session', {
 export const pageStyle = mysqlTable('page_style', {
 	id: serial('id').primaryKey(),
 	name: varchar('name', { length: 255 }).notNull(),
+	defaultCustomization: json('default_customization').notNull(),
 	createdAt: datetime('created_at').notNull().default(sql`now()`),
 	updatedAt: datetime('updated_at').notNull().default(sql`now()`),
 });
@@ -29,6 +30,7 @@ export const page = mysqlTable('page', {
 	header: text('header').notNull(),
 	footer: text('footer').notNull(),
 	customization: json('customization').notNull(),
+	hostname: varchar('hostname', { length: 255 }).notNull(),
 	pageStyleId: int('page_style_id').notNull().references(() => pageStyle.id),
 	createdAt: datetime('created_at').notNull().default(sql`now()`),
 	updatedAt: datetime('updated_at').notNull().default(sql`now()`),
@@ -37,6 +39,7 @@ export const page = mysqlTable('page', {
 export const linkStyle = mysqlTable('link_style', {
 	id: serial('id').primaryKey(),
 	name: varchar('name', { length: 255 }).notNull(),
+	defaultCustomization: json('default_customization').notNull(),
 	createdAt: datetime('created_at').notNull().default(sql`now()`),
 	updatedAt: datetime('updated_at').notNull().default(sql`now()`),
 });
