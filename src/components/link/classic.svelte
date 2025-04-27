@@ -1,18 +1,28 @@
-<script>
+<script lang="ts">
+    import { onMount } from "svelte";
+
     export let url = "#"
     export let title = "Link Name"
     export let customization = {
         placeholder: "Placeholder",
         icon: "icons/web.png",
-        bgColor: "bg-white",
-        textColor: "text-black",
+        bgColor: "#ffffff",
+        textColor: "#000000",
     }
+
+    let link: HTMLElement;
+
+    onMount(() => {
+        // set link color style css
+        link.style.color = customization.textColor;
+        link.style.backgroundColor = customization.bgColor;
+    });
 
 </script>
 
-<a
+<a bind:this={link}
     href={url}
-    class="flex flex-row w-full {customization.textColor ?? 'text-black'} justify-between items-center rounded-full {customization.bgColor ?? 'bg-white'} px-3 md:px-6 h-9 lg:h-16 shadow-lg hover:shadow-xl transition-all duration-300"
+    class="flex flex-row w-full justify-between items-center rounded-full px-3 md:px-6 h-9 lg:h-16 shadow-lg hover:shadow-xl transition-all duration-300"
 >
     <span class="flex flex-row gap-x-2 items-center">
         <img src={customization.icon} alt="{title}" class="h-4 lg:h-6" />

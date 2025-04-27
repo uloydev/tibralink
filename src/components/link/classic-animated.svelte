@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import { sleep } from "$lib/utils/time";
     import { onMount } from "svelte";
 
@@ -7,36 +7,30 @@
     export let customization = {
         icon: "icons/web.png",
         blinkText: "BEST PRICE!",
-        textColor: "text-black",
-        bgColor: "bg-white",
+        textColor: "#000000;", // text-black
+        bgColor: "#ffffff;", // bg-white
         blink: {
-            textColor1: "text-white",
-            textColor2: "text-red-500",
-            bgColor1: "bg-red-500",
-            bgColor2: "bg-white",
+            textColor1: "#ffffff;", // text-white
+            textColor2: "#ef4444;", // text-red-500
+            bgColor1: "#ef4444;", // bg-red-500
+            bgColor2: "#ffffff;", // bg-white
         },
         placeholder: {
             text1: "Placeholder 1",
             text2: "Placeholder 2",
-            textColor: "text-black",
+            textColor: "#000000;", // text-black
         },
     };
 
     let classicAnimated = {
-        containerClass: customization.bgColor,
         bodyClass: "left-0",
-        bodyTextClass: "",
         placeholder1Class: "top-0",
         placeholder2Class: "top-full",
         animationDuration: "duration-300",
     };
 
-    const toggleContainerClass = () => {
-        classicAnimated.containerClass =
-            classicAnimated.containerClass == customization.blink.bgColor1
-                ? customization.blink.bgColor2
-                : customization.blink.bgColor1;
-    };
+    let link: HTMLElement;
+    let linkBody: HTMLElement;
 
     const togglePlaceholderClass = () => {
         classicAnimated.placeholder1Class =
@@ -48,33 +42,38 @@
     };
 
     onMount(() => {
+        // set link color style css
+        link.style.color = customization.textColor;
+        link.style.backgroundColor = customization.bgColor;
+
         setTimeout(async () => {
             while (true) {
                 await sleep(1000);
-                classicAnimated.bodyTextClass = customization.blink.textColor1;
+                linkBody.style.color = customization.blink.textColor1;
                 await sleep(250);
                 classicAnimated.bodyClass =
                     "-left-[calc(25%+1rem)] lg:-left-2/5";
-                toggleContainerClass();
+                link.style.backgroundColor = customization.blink.bgColor1;
                 await sleep(1000);
                 togglePlaceholderClass();
                 await sleep(1000);
                 classicAnimated.animationDuration = "duration-0";
-                toggleContainerClass();
-                classicAnimated.bodyTextClass = customization.blink.textColor2;
+                link.style.backgroundColor = customization.blink.bgColor2;
+                linkBody.style.color = customization.blink.textColor2;
                 await sleep(400);
-                classicAnimated.bodyTextClass = customization.blink.textColor1;
-                toggleContainerClass();
+                linkBody.style.color = customization.blink.textColor1;
+                link.style.backgroundColor =
+                    customization.blink.bgColor1;
                 await sleep(400);
-                toggleContainerClass();
-                classicAnimated.bodyTextClass = customization.blink.textColor2;
+                link.style.backgroundColor = customization.blink.bgColor2;
+                linkBody.style.color = customization.blink.textColor2;
                 await sleep(700);
                 togglePlaceholderClass();
                 classicAnimated.animationDuration = "duration-300";
                 await sleep(400);
                 classicAnimated.bodyClass = "left-0";
-                classicAnimated.bodyTextClass = customization.textColor;
-                classicAnimated.containerClass = customization.bgColor;
+                linkBody.style.color = customization.textColor;
+                link.style.backgroundColor = customization.bgColor;
                 await sleep(1000);
             }
         }, 1000);
@@ -82,11 +81,13 @@
 </script>
 
 <a
+    bind:this={link}
     href={url}
-    class="w-full {customization.textColor} rounded-full {classicAnimated.containerClass} h-9 lg:h-16 shadow-lg hover:shadow-xl transition-all {classicAnimated.animationDuration} relative group"
+    class="w-full rounded-full h-9 lg:h-16 shadow-lg hover:shadow-xl transition-all {classicAnimated.animationDuration} relative group"
 >
     <div
-        class="absolute flex flex-row justify-between items-center w-full h-full px-3 md:px-6 {classicAnimated.bodyTextClass} {classicAnimated.bodyClass} transition-position {classicAnimated.animationDuration}"
+        bind:this={linkBody}
+        class="absolute flex flex-row justify-between items-center w-full h-full px-3 md:px-6 {classicAnimated.bodyClass} transition-position {classicAnimated.animationDuration}"
     >
         <span class="flex flex-row gap-x-2 items-center">
             <img src={customization.icon} alt={title} class="h-4 lg:h-6" />

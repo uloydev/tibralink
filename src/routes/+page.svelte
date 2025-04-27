@@ -37,8 +37,8 @@
             customization: {
                 placeholder: "Department.co.id",
                 icon: "icons/web.png",
-                bgColor: "bg-white",
-                textColor: "text-black",
+                bgColor: "#ffffff",
+                textColor: "#000000",
             },
         },
         {
@@ -48,8 +48,8 @@
             customization: {
                 placeholder: "Department.co.id",
                 icon: "icons/web.png",
-                bgColor: "bg-gray-500",
-                textColor: "text-white",
+                bgColor: "#707070",
+                textColor: "#ffffff",
             },
         },
         {
@@ -59,8 +59,8 @@
             customization: {
                 placeholder: "Department.co.id",
                 icon: "icons/web.png",
-                bgColor: "bg-blue-500",
-                textColor: "text-white",
+                bgColor: "#3345ff",
+                textColor: "#ffffff",
             },
         },
         {
@@ -68,18 +68,18 @@
             url: "https://department.co.id",
             linkStyle: "classic-blinking",
             customization: {
-                placeholder: "Department.co.id",
-                icon: "icons/web.png",
-                bgColor: "bg-white",
-                textColor: "text-black",
-                blinkText: "BEST PRICE!",
-                blink: {
-                    textColor1: "text-red-500",
-                    textColor2: "text-white",
-                    bgColor1: "bg-white",
-                    bgColor2: "bg-red-500",
-                    borderColor: "border-red-500",
-                },
+            placeholder: "Department.co.id",
+            icon: "icons/web.png",
+            bgColor: "#ffffff",
+            textColor: "#000000",
+            blinkText: "BEST PRICE!",
+            blink: {
+                textColor1: "#ff0000",
+                textColor2: "#ffffff",
+                bgColor1: "#ffffff",
+                bgColor2: "#ff0000",
+                borderColor: "#ff0000",
+            },
             },
         },
         {
@@ -87,20 +87,20 @@
             url: "https://department.co.id",
             linkStyle: "classic-animated",
             customization: {
-                placeholder: {
-                    text1: "Department.co.id",
-                    text2: "BEST PRICE!",
-                    textColor: "text-black",
-                },
-                icon: "icons/web.png",
-                textColor: "text-black",
-                bgColor: "bg-white",
-                blink: {
-                    textColor1: "text-white",
-                    textColor2: "text-red-500",
-                    bgColor1: "bg-red-500",
-                    bgColor2: "bg-white",
-                },
+            placeholder: {
+                text1: "Department.co.id",
+                text2: "BEST PRICE!",
+                textColor: "#000000",
+            },
+            icon: "icons/web.png",
+            textColor: "#000000",
+            bgColor: "#ffffff",
+            blink: {
+                textColor1: "#ffffff",
+                textColor2: "#ff0000",
+                bgColor1: "#ff0000",
+                bgColor2: "#ffffff",
+            },
             },
         },
         {
@@ -108,18 +108,18 @@
             url: "https://department.co.id",
             linkStyle: "color-blinking",
             customization: {
-                icon: "icons/web.png",
-                textColor: "text-black",
-                bgColor: "bg-orange-400",
-                blink: {
-                    bgColor: "bg-white",
-                    dotColor1: "bg-white",
-                    dotColor2: "bg-orange-400",
-                    text: "LIVE!",
-                    textColor: "text-black",
-                },
-                placeholder: "Department.co.id",
-                placeholderColor: "text-black",
+            icon: "icons/web.png",
+            textColor: "#000000",
+            bgColor: "#ffa500",
+            blink: {
+                bgColor: "#ffffff",
+                dotColor1: "#ffffff",
+                dotColor2: "#ffa500",
+                text: "LIVE!",
+                textColor: "#000000",
+            },
+            placeholder: "Department.co.id",
+            placeholderColor: "#000000",
             },
         },
         {
@@ -127,12 +127,12 @@
             url: "https://department.co.id",
             linkStyle: "color-border",
             customization: {
-                icon: "icons/web.png",
-                textColor: "text-black",
-                bgColor: "bg-white",
-                borderColor: "bg-orange-500",
-                placeholder: "Placeholder",
-                placeholderColor: "text-white",
+            icon: "icons/web.png",
+            textColor: "#000000",
+            bgColor: "#ffffff",
+            borderColor: "#ff4500",
+            placeholder: "Placeholder",
+            placeholderColor: "#ffffff",
             },
         },
     ];
