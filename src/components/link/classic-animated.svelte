@@ -7,18 +7,18 @@
     export let customization = {
         icon: "icons/web.png",
         blinkText: "BEST PRICE!",
-        textColor: "#000000;", // text-black
-        bgColor: "#ffffff;", // bg-white
+        textColor: "#000000",
+        bgColor: "#ffffff",
         blink: {
-            textColor1: "#ffffff;", // text-white
-            textColor2: "#ef4444;", // text-red-500
-            bgColor1: "#ef4444;", // bg-red-500
-            bgColor2: "#ffffff;", // bg-white
+            textColor1: "#ffffff",
+            textColor2: "#ef4444",
+            bgColor1: "#ef4444",
+            bgColor2: "#ffffff",
         },
         placeholder: {
             text1: "Placeholder 1",
             text2: "Placeholder 2",
-            textColor: "#000000;", // text-black
+            textColor: "#000000",
         },
     };
 

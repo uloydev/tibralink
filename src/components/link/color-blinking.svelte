@@ -5,17 +5,17 @@
     export let url = "#";
     export let customization = {
         icon: "icons/web.png",
-        textColor: "#000000", // text-black
-        bgColor: "#F97316", // bg-orange-500
+        textColor: "#000000",
+        bgColor: "#F97316",
         blink: {
-            bgColor: "#FFFFFF", // bg-white
-            dotColor1: "#FFFFFF", // bg-white
-            dotColor2: "#F97316", // bg-orange-500
+            bgColor: "#FFFFFF",
+            dotColor1: "#FFFFFF",
+            dotColor2: "#F97316",
             text: "LIVE!",
-            textColor: "#000000", // text-black
+            textColor: "#000000"
         },
         placeholder: "Placeholder",
-        placeholderColor: "#FFFFFF", // text-white
+        placeholderColor: "#FFFFFF"
     };
 
     let blinkColor = customization.blink.dotColor1;

@@ -7,14 +7,14 @@
         placeholder: "Placeholder",
         icon: "icons/web.png",
         blinkText: "BEST PRICE!",
-        textColor: "#000000;", // text-black
-        bgColor: "#ffffff;", // bg-white
+        textColor: "#000000", // text-black
+        bgColor: "#ffffff", // bg-white
         blink: {
-            textColor1: "#ef4444;", // text-red-500
-            textColor2: "#ffffff;", // text-white
-            bgColor1: "#ffffff;", // bg-white
-            bgColor2: "#ef4444;", // bg-red-500
-            borderColor: "#ef4444;", // border-red-500
+            textColor1: "#ef4444", // text-red-500
+            textColor2: "#ffffff", // text-white
+            bgColor1: "#ffffff", // bg-white
+            bgColor2: "#ef4444", // bg-red-500
+            borderColor: "#ef4444", // border-red-500
         }
     }
 

@@ -9,7 +9,7 @@
         bgColor: "#FFA500",
         borderColor: "#FFA500",
         placeholder: "Placeholder",
-        placeholderColor: "#FFFFFF",
+        placeholderColor: "#FFFFFF"
     };
 
     let widthClass = "w-1/2";

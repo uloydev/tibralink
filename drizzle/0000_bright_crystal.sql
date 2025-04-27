@@ -1,5 +1,5 @@
 CREATE TABLE `link` (
-	`id` serial NOT NULL,
+	`id` int NOT NULL AUTO_INCREMENT,
 	`title` varchar(255) NOT NULL,
 	`customization` json NOT NULL,
 	`url` varchar(255) NOT NULL,
@@ -11,7 +11,7 @@ CREATE TABLE `link` (
 );
 --> statement-breakpoint
 CREATE TABLE `link_style` (
-	`id` serial NOT NULL,
+	`id` int NOT NULL AUTO_INCREMENT,
 	`name` varchar(255) NOT NULL,
 	`created_at` datetime NOT NULL DEFAULT now(),
 	`updated_at` datetime NOT NULL DEFAULT now(),
@@ -19,9 +19,8 @@ CREATE TABLE `link_style` (
 );
 --> statement-breakpoint
 CREATE TABLE `page` (
-	`id` serial NOT NULL,
+	`id` int NOT NULL AUTO_INCREMENT,
 	`title` varchar(255) NOT NULL,
-	`hostname` varchar(255) NOT NULL,
 	`header` text NOT NULL,
 	`footer` text NOT NULL,
 	`customization` json NOT NULL,
@@ -32,7 +31,7 @@ CREATE TABLE `page` (
 );
 --> statement-breakpoint
 CREATE TABLE `page_style` (
-	`id` serial NOT NULL,
+	`id` int NOT NULL AUTO_INCREMENT,
 	`name` varchar(255) NOT NULL,
 	`created_at` datetime NOT NULL DEFAULT now(),
 	`updated_at` datetime NOT NULL DEFAULT now(),
