@@ -1,3 +1,4 @@
+import { relations } from 'drizzle-orm';
 import { mysqlTable, serial, text, int, varchar, datetime, json } from 'drizzle-orm/mysql-core';
 import { sql } from 'drizzle-orm/sql';
 
@@ -36,6 +37,11 @@ export const page = mysqlTable('page', {
 	updatedAt: datetime('updated_at').notNull().default(sql`now()`),
 });
 
+export const pageRelations = relations(page, ({ one, many }) => ({
+	pageStyle: one(pageStyle),
+	links: many(link),
+}));
+
 export const linkStyle = mysqlTable('link_style', {
 	id: serial('id').primaryKey(),
 	name: varchar('name', { length: 255 }).notNull(),
@@ -55,6 +61,17 @@ export const link = mysqlTable('link', {
 	updatedAt: datetime('updated_at').notNull().default(sql`now()`),
 });
 
+export const linkRelations = relations(link, ({ one }) => ({
+	page: one(page, {
+		fields: [link.pageId],
+		references: [page.id]
+	}),
+	linkStyle: one(linkStyle, {
+		fields: [link.linkStyleId],
+		references: [linkStyle.id]
+	}),
+}));
+
 export type Session = typeof session.$inferSelect;
 
 export type User = typeof user.$inferSelect;
@@ -66,3 +83,12 @@ export type Link = typeof link.$inferSelect;
 export type PageStyle = typeof pageStyle.$inferSelect;
 
 export type LinkStyle = typeof linkStyle.$inferSelect;
+
+export interface PageWithRelations extends Page {
+	pageStyle: PageStyle;
+}
+
+export interface LinkWithRelations extends Link {
+	page: Page;
+	linkStyle: LinkStyle;
+}
