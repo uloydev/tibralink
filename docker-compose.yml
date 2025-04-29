@@ -1,13 +1,41 @@
 services:
-  db:
-    image: mysql
-    restart: always
-    ports:
-      - 3306:3306
+  mariadb:
+    container_name: mariadb
+    image: mariadb:11-noble
+    env_file: .mariadb.env
+    restart: unless-stopped
+    networks:
+      - tibralink
+  tibralink1:
+    container_name: tibralink1
+    image: tibralink/tibralink:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     environment:
-      MYSQL_ROOT_PASSWORD: mysecretpassword
-      MYSQL_DATABASE: local
+      - NODE_ENV=production
+      - TZ=Asia/Jakarta
+    env_file: .env
     volumes:
-      - mysqldata:/var/lib/mysql
-volumes:
-  mysqldata:
+      - ./static:/app/static
+    restart: unless-stopped
+    depends_on:
+      - mariadb
+    networks:
+      - tibralink
+  npm:
+    container_name: npm
+    image: "jc21/nginx-proxy-manager:latest"
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "81:81"
+      - "443:443"
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+    networks:
+      - tibralink
+networks:
+  tibralink:
+    driver: bridge

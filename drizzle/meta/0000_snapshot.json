@@ -72,12 +72,8 @@
           "name": "link_link_style_id_link_style_id_fk",
           "tableFrom": "link",
           "tableTo": "link_style",
-          "columnsFrom": [
-            "link_style_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["link_style_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -85,12 +81,8 @@
           "name": "link_page_id_page_id_fk",
           "tableFrom": "link",
           "tableTo": "page",
-          "columnsFrom": [
-            "page_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["page_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -98,9 +90,7 @@
       "compositePrimaryKeys": {
         "link_id": {
           "name": "link_id",
-          "columns": [
-            "id"
-          ]
+          "columns": ["id"]
         }
       },
       "uniqueConstraints": {},
@@ -145,9 +135,7 @@
       "compositePrimaryKeys": {
         "link_style_id": {
           "name": "link_style_id",
-          "columns": [
-            "id"
-          ]
+          "columns": ["id"]
         }
       },
       "uniqueConstraints": {},
@@ -221,12 +209,8 @@
           "name": "page_page_style_id_page_style_id_fk",
           "tableFrom": "page",
           "tableTo": "page_style",
-          "columnsFrom": [
-            "page_style_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["page_style_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -234,9 +218,7 @@
       "compositePrimaryKeys": {
         "page_id": {
           "name": "page_id",
-          "columns": [
-            "id"
-          ]
+          "columns": ["id"]
         }
       },
       "uniqueConstraints": {},
@@ -281,9 +263,7 @@
       "compositePrimaryKeys": {
         "page_style_id": {
           "name": "page_style_id",
-          "columns": [
-            "id"
-          ]
+          "columns": ["id"]
         }
       },
       "uniqueConstraints": {},
@@ -320,12 +300,8 @@
           "name": "session_user_id_user_id_fk",
           "tableFrom": "session",
           "tableTo": "user",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -333,9 +309,7 @@
       "compositePrimaryKeys": {
         "session_id": {
           "name": "session_id",
-          "columns": [
-            "id"
-          ]
+          "columns": ["id"]
         }
       },
       "uniqueConstraints": {},
@@ -378,17 +352,13 @@
       "compositePrimaryKeys": {
         "user_id": {
           "name": "user_id",
-          "columns": [
-            "id"
-          ]
+          "columns": ["id"]
         }
       },
       "uniqueConstraints": {
         "user_username_unique": {
           "name": "user_username_unique",
-          "columns": [
-            "username"
-          ]
+          "columns": ["username"]
         }
       },
       "checkConstraint": {}

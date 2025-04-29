@@ -10,12 +10,7 @@
         url: "#",
         title: "Link Name",
         linkStyle: "classic",
-        customization: {
-            placeholder: "Placeholder",
-            icon: "icons/web.png",
-            bgColor: "bg-white",
-            textColor: "text-black",
-        },
+        customization: any,
     };
 </script>
 

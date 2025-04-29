@@ -6,7 +6,6 @@
     export let url = "#";
     export let customization = {
         icon: "icons/web.png",
-        blinkText: "BEST PRICE!",
         textColor: "#000000",
         bgColor: "#ffffff",
         blink: {
@@ -18,7 +17,6 @@
         placeholder: {
             text1: "Placeholder 1",
             text2: "Placeholder 2",
-            textColor: "#000000",
         },
     };
 

@@ -1,31 +1,34 @@
-<script>
+<script lang="ts">
     import { enhance } from "$app/forms";
     import { page } from "$app/state";
     import { onMount } from "svelte";
 
+
+    export let classes = "";
     let links = [
-        {
-            name: "Dashboard",
-            href: "/dashboard",
-            icon: "bx-home",
-            active: false,
-        },
+        // {
+        //     name: "Dashboard",
+        //     href: "/dashboard",
+        //     icon: "bx-home",
+        //     active: false,
+        // },
         {
             name: "Pages",
             href: "/dashboard/pages",
             icon: "bx-file",
             active: false,
         },
-        {
-            name: "Settings",
-            href: "/dashboard/settings",
-            icon: "bx-cog",
-            active: false,
-        },
+        // {
+        //     name: "Settings",
+        //     href: "/dashboard/settings",
+        //     icon: "bx-cog",
+        //     active: false,
+        // },
     ];
 
     let activeLink = links[0];
-    let theme = "light";
+    let theme = "dark";
+    let sidebar: HTMLElement;
 
     onMount(() => {
         // check if the theme is set in local storage
@@ -35,7 +38,7 @@
             document.documentElement.setAttribute("data-theme", theme);
         } else {
             // set the default theme
-            theme = "light";
+            theme = "dark";
             document.documentElement.setAttribute("data-theme", theme);
         }
 
@@ -47,17 +50,30 @@
             }
         }
     });
+
+    const toggleSideBar = () => {
+        sidebar.classList.toggle("left-0");
+    };
 </script>
 
 <div class="min-h-screen bg-primary flex flex-row">
-    <nav class="h-screen w-md p-8">
+    <nav bind:this={sidebar} class="h-screen  w-full lg:w-md lg:relative -left-full lg:left-0 lg:top-0 p-8 absolute z-10">
         <div
             class="flex flex-col h-full bg-base-100/70 backdrop-blur-xl rounded-2xl shadow-2xl px-4 py-6"
         >
             <div
-                class="flex items-center justify-center items-center h-24 pb-4 border-b-2 border-content/60"
+                class="flex items-center h-24 pb-4 border-b-2 border-content/60"
             >
-                <h1 class="text-5xl font-bold text-content">TibraLink</h1>
+                <h1 class="text-5xl font-bold text-content flex-grow text-center">TibraLink</h1>
+                <!-- close sidebar button -->
+                <button
+                    aria-labelledby="close sidebar button"
+                    class="lg:hidden cursor-pointer text-5xl font-bold mr-4"
+                    onclick={toggleSideBar}
+                >
+                    
+                    &times;
+                </button>
             </div>
             <div class="flex flex-col h-full">
                 <ul
@@ -80,7 +96,7 @@
                     <form
                         class="flex flex-row justify-center"
                         method="post"
-                        action="?/logout"
+                        action="/dashboard?/logout"
                         use:enhance
                     >
                         <button
@@ -96,10 +112,25 @@
     <div class="flex-grow h-screen p-8">
         <div class="flex flex-col h-full rounded-2xl gap-y-4">
             <div
-                class="h-24 text-content bg-base-100/70 rounded-2xl flex items-center justify-between px-8 shadow-xl"
+                class="h-16 text-content flex items-center justify-between "
             >
-                <div>
-                    <h1 class="text-2xl font-bold">{activeLink.name}</h1>
+                <div class="flex items-center gap-x-4">
+                    <button aria-labelledby="sidebar button" class="cursor-pointer  lg:hidden" onclick={toggleSideBar}>
+                    
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-10 w-10 fill-current text-content"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                    </button>
+                    <h1 class="text-3xl font-bold text-white">{activeLink.name}</h1>
                 </div>
                 <div>
                     <label class="swap swap-rotate">
@@ -109,7 +140,7 @@
                             class="theme-controller hidden"
                             value="dark"
                             checked={theme === "dark"}
-                            on:change={(e) => {
+                            onchange={(e) => {
                                 theme = e.target.checked ? "dark" : "light";
                                 localStorage.setItem("theme", theme);
                                 document.documentElement.setAttribute(
@@ -143,11 +174,11 @@
                     </label>
                 </div>
             </div>
-            <div class="flex-grow overflow-y-auto">
+            <div class="flex-grow {classes}">
                 <slot />
             </div>
             <div class="py-2 flex items-center justify-center">
-                <p class="text-primary-content font-semibold">Tibracomm @2025</p>
+                <p class="text-primary-content font-semibold text-lg">Tibracomm @{new Date().getFullYear()}</p>
             </div>
         </div>
     </div>

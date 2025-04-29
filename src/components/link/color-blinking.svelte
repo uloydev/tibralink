@@ -7,7 +7,7 @@
         icon: "icons/web.png",
         textColor: "#000000",
         bgColor: "#F97316",
-        blink: {
+        badge: {
             bgColor: "#FFFFFF",
             dotColor1: "#FFFFFF",
             dotColor2: "#F97316",
@@ -18,7 +18,7 @@
         placeholderColor: "#FFFFFF"
     };
 
-    let blinkColor = customization.blink.dotColor1;
+    let dotColor = customization.badge.dotColor1;
 
     let link: HTMLElement;
     let linkTitle: HTMLElement;
@@ -32,18 +32,18 @@
         link.style.backgroundColor = customization.bgColor;
 
         linkTitle.style.color = customization.textColor;
-        linkBlink.style.backgroundColor = customization.blink.bgColor;
+        linkBlink.style.backgroundColor = customization.badge.bgColor;
         linkPlaceholder.style.color = customization.placeholderColor;
 
         setInterval(() => {
-            blinkColor =
-                blinkColor == customization.blink.dotColor1 ? customization.blink.dotColor2 : customization.blink.dotColor1;
+            dotColor =
+                dotColor == customization.badge.dotColor1 ? customization.badge.dotColor2 : customization.badge.dotColor1;
             toggleLinkBlink();
         }, 500);
     });
 
     const toggleLinkBlink = () => {
-        linkBlinkDot.style.backgroundColor = blinkColor;
+        linkBlinkDot.style.backgroundColor = dotColor;
     };
 </script>
 
@@ -71,7 +71,7 @@
                 ><span
                     bind:this={linkBlinkDot}
                     class="inline-block w-3 h-3 rounded-full"
-                ></span>{customization.blink.text}</span
+                ></span>{customization.badge.text}</span
             >
         </span>
         <span 

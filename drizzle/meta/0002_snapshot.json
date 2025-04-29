@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "b3a5f4af-1d1c-4cb2-8517-d4e2caa0f9ca",
-  "prevId": "e6664661-cefe-4e0a-99f5-b71cf15f6391",
+  "id": "93b3a41c-0028-4dab-b6a3-bce207f2714a",
+  "prevId": "b3a5f4af-1d1c-4cb2-8517-d4e2caa0f9ca",
   "tables": {
     "link": {
       "name": "link",
@@ -215,6 +215,14 @@
           "notNull": true,
           "autoincrement": false,
           "default": "now()"
+        },
+        "is_disabled": {
+          "name": "is_disabled",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": false
         }
       },
       "indexes": {},

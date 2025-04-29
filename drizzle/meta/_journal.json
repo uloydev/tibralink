@@ -15,6 +15,13 @@
       "when": 1745794419765,
       "tag": "0001_stormy_exiles",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1745844145259,
+      "tag": "0002_lush_pixie",
+      "breakpoints": true
     }
   ]
 }

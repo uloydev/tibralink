@@ -36,6 +36,7 @@
     })
 
     const toggleLinkBlink = () => {
+        if (!linkBlink) return
         linkBlink.style.backgroundColor = isBlinking ? customization.blink.bgColor1 : customization.blink.bgColor2
         linkBlink.style.color = isBlinking ? customization.blink.textColor1 : customization.blink.textColor2    
     }

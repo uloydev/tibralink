@@ -1,0 +1,1 @@
+ALTER TABLE `page` ADD `is_disabled` boolean DEFAULT false NOT NULL;
