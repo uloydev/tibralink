@@ -36,7 +36,7 @@
         formData = data.data[selectedIdx];
     });
     let modal: HTMLDialogElement;
-    let customizeModal: HTMLDialogElement = $state(new HTMLDialogElement());
+    let customizeModal: HTMLDialogElement | null = $state(null);
     let formAction = $state("?/create");
     let modalTitle = $state("");
 
@@ -50,7 +50,7 @@
 
     const showCustomizeModal = (idx: number) => {
         selectedIdx = idx;
-        customizeModal.showModal();
+        customizeModal?.showModal();
     };
 </script>
 

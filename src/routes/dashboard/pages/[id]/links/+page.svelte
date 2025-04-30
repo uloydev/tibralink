@@ -45,7 +45,7 @@
         formData = data.links[selectedIdx];
     });
     let modal: HTMLDialogElement;
-    let customizeModal: HTMLDialogElement = $state(new HTMLDialogElement());
+    let customizeModal: HTMLDialogElement|null = $state(null);
     let formAction = $state("?/create");
     let modalTitle = $state("");
     let linkOption: {
@@ -87,7 +87,7 @@
 
     const showCustomizeModal = (idx: number) => {
         selectedIdx = idx;
-        customizeModal.showModal();
+        customizeModal?.showModal();
     };
 
     let deleteFormBtn: HTMLButtonElement;

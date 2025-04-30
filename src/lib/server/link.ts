@@ -30,6 +30,7 @@ export async function getAllLinks(): Promise<table.LinkWithRelations[]> {
 export async function getLinksByPageId(
   pageId: number,
 ): Promise<table.LinkWithRelations[]> {
+  const db = await getDB()
   const result = await db
     .select()
     .from(table.link)

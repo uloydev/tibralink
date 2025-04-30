@@ -18,12 +18,18 @@
 
     if (data.data.links && data.data.links.length > 0) {
         data.data.links.forEach(linkData => {
+            console.log(linkData);
+            console.log(typeof linkData.link.customization);
+            let custom = typeof linkData.link.customization === "string" ? JSON.parse(linkData.link.customization) : linkData.link.customization
+            
             links.push({
                 ...linkData.link,
-                customization: JSON.parse(linkData.link.customization),
+                customization: custom,
+                linkStyle: linkData.link_style?.name || "classic",
             });
             
         });
+        console.log(links);
     }
 </script>
 
