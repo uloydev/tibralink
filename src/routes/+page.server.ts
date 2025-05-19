@@ -1,12 +1,16 @@
 import * as pageRepo from "$lib/server/page";
 import * as linkRepo from "$lib/server/link";
-import { error } from "@sveltejs/kit";
+import { error, redirect } from "@sveltejs/kit";
 import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = async (event) => {
   // get hostname from request
   const hostname = event.url.origin.split("/").pop();
   console.log("Hostname:", hostname);
+  if (hostname == process.env.ADMIN_HOSTNAME) {
+    return redirect(301, "/login")
+  }
+
   // get page by hostname
   if (!hostname) {
     throw error(400, "Hostname not found");
