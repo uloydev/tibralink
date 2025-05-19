@@ -6,7 +6,11 @@ import { env } from "$env/dynamic/private";
 if (!env.DATABASE_URL) throw new Error("DATABASE_URL is not set");
 //  skip create
 
+export let DB: mysql.Connection;
+
 export const getDB = async () => {
-    const client = await mysql.createConnection(env.DATABASE_URL);
-    return drizzle(client, { schema, mode: "default" });
+    if (!DB) {
+        DB = await mysql.createConnection(env.DATABASE_URL);
+    }
+    return drizzle(DB, { schema, mode: "default" });
 }
