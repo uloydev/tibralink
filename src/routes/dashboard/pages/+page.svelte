@@ -109,7 +109,7 @@
                                     >Links</a
                                 >
                                 <a
-                                    href={page?.hostname}
+                                    href={"https://" + page?.hostname}
                                     target="_blank"
                                     class="btn btn-xs btn-error font-semibold"
                                     >Visit</a
