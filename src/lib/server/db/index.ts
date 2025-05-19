@@ -9,7 +9,7 @@ if (!env.DATABASE_URL) throw new Error("DATABASE_URL is not set");
 export let DB: mysql.Connection;
 
 export const getDB = async () => {
-    if (!DB || env.BUILD_STAGE) {
+    if (!DB) {
         DB = await mysql.createConnection(env.DATABASE_URL);
     }
     return drizzle(DB, { schema, mode: "default" });
