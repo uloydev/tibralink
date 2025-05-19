@@ -2,13 +2,14 @@ import * as pageRepo from "$lib/server/page";
 import * as linkRepo from "$lib/server/link";
 import { error, redirect } from "@sveltejs/kit";
 import type { PageServerLoad } from "./$types";
+import { ADMIN_HOSTNAME } from "$env/static/private";
 
 export const load: PageServerLoad = async (event) => {
   // get hostname from request
   const hostname = event.url.origin.split("/").pop();
   console.log("Hostname:", hostname);
-  if (hostname == process.env.ADMIN_HOSTNAME) {
-    return redirect(301, "/login")
+  if (hostname == ADMIN_HOSTNAME) {
+    return redirect(302, "/login")
   }
 
   // get page by hostname
