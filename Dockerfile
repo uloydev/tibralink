@@ -5,6 +5,7 @@ COPY package*.json ./
 RUN npm i -g pnpm
 RUN pnpm install
 COPY . .
+RUN export BUILD_STAGE=1
 RUN pnpm build
 RUN pnpm prune --prod
 
