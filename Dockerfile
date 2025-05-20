@@ -1,21 +1,36 @@
+# === Build stage ===
 FROM node:22-alpine AS builder
+
 WORKDIR /app
-USER app
+
 COPY package*.json ./
-# COPY pnpm-lock.yaml ./
 RUN npm i -g pnpm
 RUN pnpm install
+
 COPY . .
 RUN pnpm build
 RUN pnpm prune --prod
 
-# Use another Node.js Alpine image for the final stage
+# === Production stage ===
 FROM node:22-alpine
-USER app
+
+# Create non-root user and group
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+
 WORKDIR /app
-COPY --from=builder /app/build build/
-COPY --from=builder /app/node_modules node_modules/
+
+# Copy files and set permissions
+COPY --from=builder /app/build ./build
+COPY --from=builder /app/node_modules ./node_modules
 COPY package.json .
+
+# Change ownership (optional if needed for write access)
+RUN chown -R appuser:appgroup /app
+
+# Use non-root user
+USER appuser
+
 EXPOSE 3000
 ENV NODE_ENV=production
-CMD [ "node", "build" ]
+
+CMD ["node", "build"]

@@ -33,6 +33,7 @@
 
         linkTitle.style.color = customization.textColor;
         linkBlink.style.backgroundColor = customization.badge.bgColor;
+        linkBlink.style.color = customization.badge.textColor;
         linkPlaceholder.style.color = customization.placeholderColor;
 
         setInterval(() => {

@@ -203,7 +203,7 @@
                     type="color"
                     class="input w-full"
                     placeholder="Type here"
-                    value={customization?.badge?.textColor}
+                    value={customization?.badge?.bgColor}
                 />
             </fieldset>
             <div class="flex justify-end items-center mt-4">
