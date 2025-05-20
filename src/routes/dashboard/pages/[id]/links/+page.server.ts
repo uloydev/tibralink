@@ -228,7 +228,7 @@ const handleColorBorderCustomization = async (
     const { icon } = data as { icon: File };
     const iconFName = crypto.randomUUID() + "." + icon.name.split(".").pop();
     writeFileSync(
-      `static/uploads/${iconFName}`,
+      `uploads/${iconFName}`,
       Buffer.from(await icon.arrayBuffer()),
       {
         mode: 0o777
@@ -283,7 +283,7 @@ const handleColorBlinkingCustomization = async (
     const { icon } = data as { icon: File };
     const iconFName = crypto.randomUUID() + "." + icon.name.split(".").pop();
     writeFileSync(
-      `static/uploads/${iconFName}`,
+      `uploads/${iconFName}`,
       Buffer.from(await icon.arrayBuffer()),
       {
         mode: 0o777
@@ -357,7 +357,7 @@ const handleClassicAnimatedCustomization = async (
     const { icon } = data as { icon: File };
     const iconFName = crypto.randomUUID() + "." + icon.name.split(".").pop();
     writeFileSync(
-      `static/uploads/${iconFName}`,
+      `uploads/${iconFName}`,
       Buffer.from(await icon.arrayBuffer()),
       {
         mode: 0o777
@@ -425,7 +425,7 @@ const handleClassicBlinkingCustomization = async (
     const { icon } = data as { icon: File };
     const iconFName = crypto.randomUUID() + "." + icon.name.split(".").pop();
     writeFileSync(
-      `static/uploads/${iconFName}`,
+      `uploads/${iconFName}`,
       Buffer.from(await icon.arrayBuffer()),
       {
         mode: 0o777
@@ -493,7 +493,7 @@ const handleClassicCustomization = async (
     const { icon } = data as { icon: File };
     const iconFName = crypto.randomUUID() + "." + icon.name.split(".").pop();
     writeFileSync(
-      `static/uploads/${iconFName}`,
+      `uploads/${iconFName}`,
       Buffer.from(await icon.arrayBuffer()),
       {
         mode: 0o777

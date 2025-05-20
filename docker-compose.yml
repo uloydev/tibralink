@@ -17,8 +17,8 @@ services:
       - TZ=Asia/Jakarta
     env_file: .env
     volumes:
-      - ./static:/app/static
-      - ./static:/app/build/static
+      - ./uploads:/app/uploads
+      - ./uploads:/app/build/uploads
     restart: unless-stopped
     depends_on:
       - mariadb

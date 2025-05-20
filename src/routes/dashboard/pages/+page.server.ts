@@ -152,7 +152,7 @@ const handleDefaultCustomization = async (
     const { bgImage } = data as { bgImage: File };
     const bgFName = crypto.randomUUID() + "." + bgFile.name.split(".").pop();
     writeFileSync(
-      `static/uploads/${bgFName}`,
+      `uploads/${bgFName}`,
       Buffer.from(await bgImage.arrayBuffer()),
       {
         mode: 0o777
@@ -174,7 +174,7 @@ const handleDefaultCustomization = async (
     const logoFName =
       crypto.randomUUID() + "." + logoFile.name.split(".").pop();
     writeFileSync(
-      `static/uploads/${logoFName}`,
+      `uploads/${logoFName}`,
       Buffer.from(await logo.arrayBuffer()),
       {
         mode: 0o777
