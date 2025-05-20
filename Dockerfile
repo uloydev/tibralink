@@ -1,5 +1,6 @@
 FROM node:22-alpine AS builder
 WORKDIR /app
+USER app
 COPY package*.json ./
 # COPY pnpm-lock.yaml ./
 RUN npm i -g pnpm
@@ -10,6 +11,7 @@ RUN pnpm prune --prod
 
 # Use another Node.js Alpine image for the final stage
 FROM node:22-alpine
+USER app
 WORKDIR /app
 COPY --from=builder /app/build build/
 COPY --from=builder /app/node_modules node_modules/
