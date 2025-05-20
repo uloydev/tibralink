@@ -18,6 +18,7 @@ services:
     env_file: .env
     volumes:
       - ./static:/app/static
+      - ./static:/app/build/static
     restart: unless-stopped
     depends_on:
       - mariadb
