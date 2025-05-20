@@ -22,8 +22,8 @@
 
     let classicAnimated = {
         bodyClass: "left-0",
-        placeholder1Class: "top-0",
-        placeholder2Class: "top-full",
+        placeholder1Class: "right-3 md:right-6 top-1/2 -translate-y-1/2",
+        placeholder2Class: "right-3 md:right-6 top-full",
         animationDuration: "duration-300",
     };
 
@@ -51,9 +51,12 @@
                 await sleep(250);
                 classicAnimated.bodyClass =
                     "-left-[calc(25%+1rem)] lg:-left-2/5";
+                classicAnimated.placeholder1Class = classicAnimated.placeholder1Class.replace("right-3 md:right-6", "right-1/2 translate-x-1/2");
+                classicAnimated.placeholder2Class = classicAnimated.placeholder2Class.replace("right-3 md:right-6", "right-1/2 translate-x-1/2");
                 link.style.backgroundColor = customization.blink.bgColor1;
                 await sleep(1000);
-                togglePlaceholderClass();
+                classicAnimated.placeholder1Class = classicAnimated.placeholder1Class.replace("top-1/2 -translate-y-1/2", "top-full");
+                classicAnimated.placeholder2Class = classicAnimated.placeholder2Class.replace("top-full","top-1/2 -translate-y-1/2");
                 await sleep(1000);
                 classicAnimated.animationDuration = "duration-0";
                 link.style.backgroundColor = customization.blink.bgColor2;
@@ -66,10 +69,13 @@
                 link.style.backgroundColor = customization.blink.bgColor2;
                 linkBody.style.color = customization.blink.textColor2;
                 await sleep(700);
-                togglePlaceholderClass();
+                classicAnimated.placeholder1Class = classicAnimated.placeholder1Class.replace("top-full","top-1/2 -translate-y-1/2");
+                classicAnimated.placeholder2Class = classicAnimated.placeholder2Class.replace("top-1/2 -translate-y-1/2", "top-full");
                 classicAnimated.animationDuration = "duration-300";
                 await sleep(400);
                 classicAnimated.bodyClass = "left-0";
+                classicAnimated.placeholder1Class = classicAnimated.placeholder1Class.replace("right-1/2 translate-x-1/2", "right-3 md:right-6");
+                classicAnimated.placeholder2Class = classicAnimated.placeholder2Class.replace("right-1/2 translate-x-1/2", "right-3 md:right-6");
                 linkBody.style.color = customization.textColor;
                 link.style.backgroundColor = customization.bgColor;
                 await sleep(1000);
@@ -84,7 +90,6 @@
     class="w-full rounded-full h-9 lg:h-16 shadow-lg hover:shadow-xl transition-all {classicAnimated.animationDuration} relative group"
 >
     <div
-        bind:this={linkBody}
         class="absolute flex flex-row justify-between items-center w-full h-full px-3 md:px-6 {classicAnimated.bodyClass} transition-position {classicAnimated.animationDuration}"
     >
         <span class="flex flex-row gap-x-2 items-center">
@@ -93,17 +98,19 @@
                 >{title}</span
             >
         </span>
-        <div class="relative overflow-hidden">
-            <span class="text-sm md:text-lg opacity-0 w-full"
-                >{customization.placeholder.text1}</span
+    </div>
+    <div bind:this={linkBody} class="relative w-full h-full overflow-hidden">
+        <div class="w-full h-full overflow-hidden">
+            <!-- <span class="absolute text-sm md:text-lg opacity-0 -translate-x-1/2 top-1/2 left-1/2 -translate-y-1/2"
+            >{customization.placeholder.text1}</span
+            > -->
+            <span
+            class="absolute {classicAnimated.placeholder1Class} text-sm md:text-lg text-right transition-all {classicAnimated.animationDuration}"
+            >{customization.placeholder.text1}</span
             >
             <span
-                class="absolute {classicAnimated.placeholder1Class} left-0 text-sm md:text-lg text-right transition-all {classicAnimated.animationDuration}"
-                >{customization.placeholder.text1}</span
-            >
-            <span
-                class="absolute left-0 {classicAnimated.placeholder2Class} text-sm md:text-lg transition-all {classicAnimated.animationDuration} text-center w-full"
-                >{customization.placeholder.text2}</span
+            class="absolute {classicAnimated.placeholder2Class} text-sm md:text-lg transition-all {classicAnimated.animationDuration} text-center w-full"
+            >{customization.placeholder.text2}</span
             >
         </div>
     </div>
