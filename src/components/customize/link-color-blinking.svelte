@@ -187,6 +187,17 @@
             <fieldset class="fieldset w-full">
                 <legend class="fieldset-legend text-sm">Badge Text Color</legend>
                 <input
+                    name="badge[textColor]"
+                    required
+                    type="color"
+                    class="input w-full"
+                    placeholder="Type here"
+                    value={customization?.badge?.textColor}
+                />
+            </fieldset>
+            <fieldset class="fieldset w-full">
+                <legend class="fieldset-legend text-sm">Badge Background Color</legend>
+                <input
                     name="badge[bgColor]"
                     required
                     type="color"
