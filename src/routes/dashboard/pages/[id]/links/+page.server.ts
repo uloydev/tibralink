@@ -75,6 +75,7 @@ export const actions: Actions = {
     };
 
     const oldLink = await linkRepo.getLinkById(linkId);
+    console.log(oldLink);
     if (!oldLink) {
       return fail(400, {
         error: "Link not found",
@@ -100,7 +101,7 @@ export const actions: Actions = {
       link.customization = JSON.parse(linkStyle.defaultCustomization);
     } else {
       // @ts-ignore
-      link.customization = JSON.parse(oldLink.customization);
+      link.customization = JSON.parse(oldLink.link.customization);
     }
 
     await linkRepo.updateLink(link);
