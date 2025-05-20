@@ -165,7 +165,7 @@
             <fieldset class="fieldset w-full">
                 <legend class="fieldset-legend text-sm">Badge Dot Color 1</legend>
                 <input
-                    name="blink[dotColor1]"
+                    name="badge[dotColor1]"
                     required
                     type="color"
                     class="input w-full"
@@ -187,7 +187,7 @@
             <fieldset class="fieldset w-full">
                 <legend class="fieldset-legend text-sm">Badge Text Color</legend>
                 <input
-                    name="badge[bgColor1]"
+                    name="badge[bgColor]"
                     required
                     type="color"
                     class="input w-full"
