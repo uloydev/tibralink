@@ -17,8 +17,13 @@ FROM node:22-alpine
 ARG UID=1000
 ARG GID=1000
 
-RUN addgroup -g ${GID} appgroup && \
-    adduser -D -u ${UID} -G appgroup appuser
+RUN existing_group=$(getent group "${GID}" | cut -d: -f1 || true) && \
+    if [ -z "$existing_group" ]; then \
+      addgroup -g ${GID} appgroup; \
+    else \
+      groupname=$existing_group && echo "Using existing group: $groupname"; \
+    fi && \
+    adduser -D -u ${UID} -G "$groupname" -s /bin/sh appuser
 
 WORKDIR /app
 
