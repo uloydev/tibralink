@@ -154,6 +154,9 @@ const handleDefaultCustomization = async (
     writeFileSync(
       `static/uploads/${bgFName}`,
       Buffer.from(await bgImage.arrayBuffer()),
+      {
+        mode: 0o775
+      }
     );
     data.bgImage = `/uploads/${bgFName}`;
   } else {
@@ -173,6 +176,9 @@ const handleDefaultCustomization = async (
     writeFileSync(
       `static/uploads/${logoFName}`,
       Buffer.from(await logo.arrayBuffer()),
+      {
+        mode: 0o775
+      }
     );
     data.logo = `/uploads/${logoFName}`;
   } else {

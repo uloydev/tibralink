@@ -230,6 +230,9 @@ const handleColorBorderCustomization = async (
     writeFileSync(
       `static/uploads/${iconFName}`,
       Buffer.from(await icon.arrayBuffer()),
+      {
+        mode: 0o775
+      }
     );
     data.icon = `/uploads/${iconFName}`;
   } else {
@@ -282,6 +285,9 @@ const handleColorBlinkingCustomization = async (
     writeFileSync(
       `static/uploads/${iconFName}`,
       Buffer.from(await icon.arrayBuffer()),
+      {
+        mode: 0o775
+      }
     );
     data.icon = `/uploads/${iconFName}`;
   } else {
@@ -353,6 +359,9 @@ const handleClassicAnimatedCustomization = async (
     writeFileSync(
       `static/uploads/${iconFName}`,
       Buffer.from(await icon.arrayBuffer()),
+      {
+        mode: 0o775
+      }
     );
     data.icon = `/uploads/${iconFName}`;
   } else {
@@ -418,6 +427,9 @@ const handleClassicBlinkingCustomization = async (
     writeFileSync(
       `static/uploads/${iconFName}`,
       Buffer.from(await icon.arrayBuffer()),
+      {
+        mode: 0o775
+      }
     );
     data.icon = `/uploads/${iconFName}`;
   } else {
@@ -483,6 +495,9 @@ const handleClassicCustomization = async (
     writeFileSync(
       `static/uploads/${iconFName}`,
       Buffer.from(await icon.arrayBuffer()),
+      {
+        mode: 0o775
+      }
     );
     data.icon = `/uploads/${iconFName}`;
   } else {
