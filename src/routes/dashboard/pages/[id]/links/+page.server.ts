@@ -231,7 +231,7 @@ const handleColorBorderCustomization = async (
       `static/uploads/${iconFName}`,
       Buffer.from(await icon.arrayBuffer()),
       {
-        mode: 0o775
+        mode: 0o777
       }
     );
     data.icon = `/uploads/${iconFName}`;
@@ -286,7 +286,7 @@ const handleColorBlinkingCustomization = async (
       `static/uploads/${iconFName}`,
       Buffer.from(await icon.arrayBuffer()),
       {
-        mode: 0o775
+        mode: 0o777
       }
     );
     data.icon = `/uploads/${iconFName}`;
@@ -360,7 +360,7 @@ const handleClassicAnimatedCustomization = async (
       `static/uploads/${iconFName}`,
       Buffer.from(await icon.arrayBuffer()),
       {
-        mode: 0o775
+        mode: 0o777
       }
     );
     data.icon = `/uploads/${iconFName}`;
@@ -428,7 +428,7 @@ const handleClassicBlinkingCustomization = async (
       `static/uploads/${iconFName}`,
       Buffer.from(await icon.arrayBuffer()),
       {
-        mode: 0o775
+        mode: 0o777
       }
     );
     data.icon = `/uploads/${iconFName}`;
@@ -496,7 +496,7 @@ const handleClassicCustomization = async (
       `static/uploads/${iconFName}`,
       Buffer.from(await icon.arrayBuffer()),
       {
-        mode: 0o775
+        mode: 0o777
       }
     );
     data.icon = `/uploads/${iconFName}`;

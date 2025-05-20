@@ -155,7 +155,7 @@ const handleDefaultCustomization = async (
       `static/uploads/${bgFName}`,
       Buffer.from(await bgImage.arrayBuffer()),
       {
-        mode: 0o775
+        mode: 0o777
       }
     );
     data.bgImage = `/uploads/${bgFName}`;
@@ -177,7 +177,7 @@ const handleDefaultCustomization = async (
       `static/uploads/${logoFName}`,
       Buffer.from(await logo.arrayBuffer()),
       {
-        mode: 0o775
+        mode: 0o777
       }
     );
     data.logo = `/uploads/${logoFName}`;
