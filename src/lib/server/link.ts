@@ -1,6 +1,7 @@
 import { getDB } from "$lib/server/db";
 import * as table from "$lib/server/db/schema";
-import { and, eq } from "drizzle-orm";
+import { and, eq, sql } from "drizzle-orm";
+import { raw } from "mysql2";
 
 export async function getLinkById(
   id: number,
@@ -35,6 +36,7 @@ export async function getLinksByPageId(
     .select()
     .from(table.link)
     .where(eq(table.link.pageId, pageId))
+    .orderBy(table.link.sort_order)
     .leftJoin(table.linkStyle, eq(table.link.linkStyleId, table.linkStyle.id));
   return result as table.LinkWithRelations[];
 }
@@ -84,4 +86,73 @@ export async function getAllLinkStyles(): Promise<table.LinkStyle[]> {
   const db = await getDB();
   const result = await db.query.linkStyle.findMany();
   return result as table.LinkStyle[];
+}
+
+export async function moveUpLink(
+  linkId: number,
+  pageId: number,
+): Promise<void> {
+  const db = await getDB();
+
+  const link = await db.query.link.findFirst({
+    where: eq(table.link.id, linkId),
+  });
+  if (!link) {
+    throw new Error("Link not found");
+  }
+
+  const previousLink = await db.query.link.findFirst({
+    where: and(
+      eq(table.link.pageId, pageId),
+      eq(table.link.sort_order, link.sort_order - 1),
+    ),
+  });
+
+  if (!previousLink) {
+    throw new Error("No previous link found to move up");
+  }
+
+  await db.update(table.link).set({ sort_order: previousLink.sort_order }).where(eq(table.link.id, link.id));
+  await db.update(table.link).set({ sort_order: link.sort_order }).where(eq(table.link.id, previousLink.id));
+}
+
+export async function moveDownLink(
+  linkId: number,
+  pageId: number,
+): Promise<void> {
+  const db = await getDB();
+
+  const link = await db.query.link.findFirst({
+    where: eq(table.link.id, linkId),
+  });
+  if (!link) {
+    throw new Error("Link not found");
+  }
+
+  const nextLink = await db.query.link.findFirst({
+    where: and(
+      eq(table.link.pageId, pageId),
+      eq(table.link.sort_order, link.sort_order + 1),
+    ),
+  });
+
+  if (!nextLink) {
+    throw new Error("No next link found to move down");
+  }
+
+  await db.update(table.link).set({ sort_order: nextLink.sort_order }).where(eq(table.link.id, link.id));
+  await db.update(table.link).set({ sort_order: link.sort_order }).where(eq(table.link.id, nextLink.id));
+}
+
+export async function getLastOrderNumber(
+  pageId: number,
+): Promise<number> {
+  const db = await getDB();
+  const result = await db
+    .select({ maxOrder: sql<number>`MAX(${table.link.sort_order})` })
+    .from(table.link)
+    .where(eq(table.link.pageId, pageId))
+    .limit(1);
+
+  return result[0]?.maxOrder ?? 0;
 }

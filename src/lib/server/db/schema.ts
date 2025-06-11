@@ -82,6 +82,7 @@ export const link = mysqlTable("link", {
   title: varchar("title", { length: 255 }).notNull(),
   customization: json("customization").notNull(),
   url: varchar("url", { length: 255 }).notNull(),
+  sort_order: int("sort_order").notNull().default(0),
   linkStyleId: int("link_style_id")
     .notNull()
     .references(() => linkStyle.id),

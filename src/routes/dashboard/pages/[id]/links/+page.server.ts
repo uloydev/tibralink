@@ -2,7 +2,7 @@ import * as pageRepo from "$lib/server/page";
 import * as linkRepo from "$lib/server/link";
 import { fail, type Actions } from "@sveltejs/kit";
 import type { LinkWithRelations } from "$lib/server/db/schema";
-import { writeFileSync } from "fs";
+import { link, writeFileSync } from "fs";
 import { redirect } from "@sveltejs/kit";
 
 /** @type {import('./$types').PageServerLoad} */
@@ -19,6 +19,69 @@ export const load = async ({ params, locals }) => {
 
 /** @type {import('./$types').Actions} */
 export const actions: Actions = {
+  up: async ({ params, request }) => {
+    const formData = await request.formData();
+    const pageId = Number(params.id);
+    const linkId = Number(formData.get("linkId"));
+
+    const page = await pageRepo.getPageById(pageId);
+    if (!page) {
+      return fail(400, {
+        error: "Page not found",
+      });
+    }
+
+    const link = await linkRepo.getLinkById(linkId);
+    if (!link) {
+      return fail(400, {
+        error: "Link not found",
+      });
+    }
+
+    if (link.link.pageId !== page.page?.id) {
+      return fail(400, {
+        error: "Page not found",
+      });
+    }
+
+    await linkRepo.moveUpLink(linkId, pageId);
+
+    return {
+      success: true
+    };
+  },
+  down: async ({ params, request }) => {
+    const formData = await request.formData();
+    const pageId = Number(params.id);
+    const linkId = Number(formData.get("linkId"));
+    console.log("linkId", linkId);
+
+    const page = await pageRepo.getPageById(pageId);
+    if (!page) {
+      return fail(400, {
+        error: "Page not found",
+      });
+    }
+
+    const link = await linkRepo.getLinkById(linkId);
+    if (!link) {
+      return fail(400, {
+        error: "Link not found",
+      });
+    }
+
+    if (link.link.pageId !== page.page?.id) {
+      return fail(400, {
+        error: "Page not found",
+      });
+    }
+
+    await linkRepo.moveDownLink(linkId, pageId);
+
+    return {
+      success: true
+    };
+  },
   create: async ({ params, request }) => {
     const formData = await request.formData();
     const pageId = Number(params.id);
@@ -29,6 +92,7 @@ export const actions: Actions = {
       title: formData.get("title")?.toString() || "",
       url: formData.get("url")?.toString() || "",
       linkStyleId: Number(formData.get("linkStyleId")),
+      sort_order: await linkRepo.getLastOrderNumber(pageId) + 1,
       createdAt: new Date(),
       updatedAt: new Date(),
       customization: {},
@@ -69,6 +133,7 @@ export const actions: Actions = {
       title: formData.get("title")?.toString() || "",
       url: formData.get("url")?.toString() || "",
       linkStyleId: Number(formData.get("linkStyleId")),
+      sort_order: 0,
       createdAt: new Date(),
       updatedAt: new Date(),
       customization: {},
@@ -81,6 +146,8 @@ export const actions: Actions = {
         error: "Link not found",
       });
     }
+
+    link.sort_order = oldLink.link.sort_order;
 
     const page = await pageRepo.getPageById(pageId);
     if (!page) {

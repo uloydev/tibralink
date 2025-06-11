@@ -29,6 +29,11 @@
         } | null;
     }
 
+    let upLinkForm: HTMLFormElement;
+    let downLinkForm: HTMLFormElement;
+    let upLinkID: HTMLInputElement;
+    let downLinkID: HTMLInputElement;
+
     let { data }: PageProps = $props();
     let { page } = data.page;
     let selectedIdx = $state(-1);
@@ -66,6 +71,16 @@
     });
 
     let linkStyleSelector: HTMLSelectElement;
+
+    const moveUpLink = (id: number) => {
+        upLinkID.value = id.toString();
+        upLinkForm?.submit();
+    };
+
+    const moveDownLink = (id: number) => {
+        downLinkID.value = id.toString();
+        downLinkForm?.submit();
+    };
 
     const showModal = (idx: number, isUpdate = false) => {
         selectedIdx = idx;
@@ -136,6 +151,70 @@
         class="overflow-y-auto w-full h-full bg-base-100/70 rounded-2xl shadow-2xl p-6"
     >
         <div class="overflow-x-auto">
+            <form bind:this={upLinkForm} class="hidden" method="POST" action="?/up"
+            use:enhance={() => {
+                return async ({ result }) => {
+                    if (result.type === "success" || result.type === "redirect") {
+                        Swal.fire({
+                            icon: "success",
+                            title: "Success",
+                            text: "Link moved successfully",
+                        }).finally(() => {
+                            window.location.reload();
+                        });
+                    } else if (result.type === "error") {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Error",
+                            text: result.error,
+                        }).finally(() => {
+                            window.location.reload();
+                        });
+                    } else if (result.type === "failure") {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Error",
+                            text: (result.data?.error as string) || "Unknown error",
+                        }).finally(() => {
+                            window.location.reload();
+                        });
+                    }
+                };
+            }}>
+                <input type="hidden" name="linkId" bind:this={upLinkID} />
+            </form>
+            <form bind:this={downLinkForm} class="hidden" method="POST" action="?/down"
+            use:enhance={() => {
+                return async ({ result }) => {
+                    if (result.type === "success" || result.type === "redirect") {
+                        Swal.fire({
+                            icon: "success",
+                            title: "Success",
+                            text: "Link moved successfully",
+                        }).finally(() => {
+                            window.location.reload();
+                        });
+                    } else if (result.type === "error") {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Error",
+                            text: result.error,
+                        }).finally(() => {
+                            window.location.reload();
+                        });
+                    } else if (result.type === "failure") {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Error",
+                            text: (result.data?.error as string) || "Unknown error",
+                        }).finally(() => {
+                            window.location.reload();
+                        });
+                    }
+                };
+            }}>
+                <input type="hidden" name="linkId" bind:this={downLinkID} />
+            </form>
             <table class="table">
                 <!-- head -->
                 <thead>
@@ -155,6 +234,21 @@
                             <td>{link?.url}</td>
                             <td>{link_style?.name}</td>
                             <td class="flex gap-x-2">
+                                {#if link?.sort_order > 1}
+                                    
+                                <button
+                                class="btn btn-xs btn-primary font-semibold"
+                                onclick={() => moveUpLink(link.id)}
+                                >Up</button
+                                >
+                                {/if}
+                                {#if link?.sort_order < data.links.length}
+                                    <button
+                                        class="btn btn-xs btn-primary font-semibold"
+                                        onclick={() => moveDownLink(link.id)}
+                                        >Down</button
+                                    >
+                                {/if}
                                 <button
                                     class="btn btn-xs btn-primary font-semibold"
                                     onclick={() => showModal(idx, true)}
